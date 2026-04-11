@@ -5,6 +5,7 @@
 export interface NodeDataPayload {
   targetId: string;
   inputStrings: string[];
+  config?: Record<string, any>; // 노드 제작 시 설정된 고유 세팅값들 (Temperature, API Key 등)
 }
 
 /**
