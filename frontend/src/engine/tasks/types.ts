@@ -15,8 +15,3 @@ export interface ITaskConsumer {
    */
   execute(inputs: NodeDataPayload): Promise<any>;
 }
-
-export interface ITaskConsumerRegistry {
-  register(consumer: ITaskConsumer): void;
-  getConsumer(nodeType: string): ITaskConsumer | undefined;
-}
