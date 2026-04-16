@@ -58,8 +58,9 @@ export interface StaticNode extends AgentNode {
   inputNum: 0;
   inputTypes: [];
   outputNum: 1;
-  outputTypes: ['string'];
-  staticContent: string;
+  outputTypes: [DataType]; // staticType에 따라 string, image, video 중 하나가 됨
+  staticType: DataType;    // 현재 노드가 다루는 데이터의 타입 (텍스트/이미지/영상)
+  staticContent: string;   // 텍스트 내용 혹은 MediaAsset의 ID
 }
 
 /** [Node Type 3] Concat 노드 */
