@@ -21,8 +21,8 @@ export interface MediaAsset {
  */
 export interface NodeDataPayload {
   targetId: string;
-  inputStrings: string[];       // 텍스트 데이터 리스트
-  inputAssetIds?: string[];     // 전달된 미디어 자산 ID 리스트
+  inputStrings: string[];       // 각 포트(index)별로 수집된 텍스트 데이터 
+  inputAssetIds?: string[];     // 각 포트(index)별로 수집된 미디어 자산 ID
   config?: Record<string, any>; // 노드 제작 시 설정된 고유 세팅값들
 }
 
@@ -37,10 +37,14 @@ export interface AgentNode {
   
   inputEdges: string[];
   inputNum: number;
-  inputTypes: DataType[]; // 입력 포트별 기대 데이터 타입
+  inputTypes: DataType[];
   outputEdges: string[];
   outputNum: number;
-  outputTypes: DataType[]; // 출력 포트별 데이터 타입
+  outputTypes: DataType[];
+
+  // [Execution Heart] 
+  inputBuffer: string[]; // 각 포트(Index)에 들어온 단일 데이터 보관 (길이 = inputNum)
+  log: string[];         // 노드 실행 로그 및 히스토리
 }
 
 /** [Node Type 1] Input 노드 */
