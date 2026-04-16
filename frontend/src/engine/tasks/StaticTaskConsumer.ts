@@ -10,13 +10,17 @@ export class StaticTaskConsumer implements ITaskConsumer {
 
   /**
    * @param payload 
-   *   - payload.config: { staticContent: string } (미리 입력된 고정 텍스트)
+   *   - payload.config: { staticType: DataType, staticContent: string }
    */
   async execute(payload: NodeDataPayload): Promise<string> {
-    const staticContent = payload.config?.staticContent || "";
+    const { staticType, staticContent } = payload.config || {};
+    const content = staticContent || "";
 
-    console.log(`[StaticTask] Execution Success: Outputting fixed string -> "${staticContent}"`);
+    console.log(`[StaticTask] Execution Success: Outputting ${staticType} data -> "${content.substring(0, 20)}..."`);
     
-    return staticContent;
+    // 단순하게 타입에 맞는 값을 반환합니다. 
+    // 나중에 엔진(Orchestrator)이 이 노드의 staticType을 보고 
+    // 문자열 리스트로 보낼지, 자산 ID 리스트로 보낼지 결정하게 됩니다.
+    return content;
   }
 }
